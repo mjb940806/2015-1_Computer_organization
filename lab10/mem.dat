@@ -1,0 +1,46 @@
+// format of this file:
+// "//" is the comment
+// @word address, content (hex format)
+
+//2 parts: code part and data part
+
+//*****code part*********
+//00000000 LW R2, 90(R10)
+@000 8d42005a
+
+//00000004 LW R3, 94(R10)
+@001 8d43005e
+
+//00000008 SUB R4, R2, R3
+@002 00432022 
+
+//0000000c SW R4, 90(R10)
+@003 ad44005a
+
+//00000010 ADD R5, R10, R12
+@004 014c2820
+
+//00000014 ADD R6, R9, R13
+@005 012d3020
+
+//00000018 BEQ R5, R6, 5 
+// both R5 and R6 has a value of 22(10+12, 9+13).
+// so BEQ should be taken. It goes to the next J instruction.
+@006 10a60005
+
+//00000030 J 0
+// It always goes to address 0.
+@00c 08000000
+
+//*****data part********
+//here is the data part, starting from the byte address of 100
+//word address of 25, in hex form 19h = 25
+
+//00000064 11223344
+@019 11223344
+
+//00000068 55667788
+@01a 55667788 
+
+//0000006c aabbccdd
+@01b aabbccdd
